@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test</title>
+</head>
+<body>
+    <input id="name" type="text">
+    <button onclick="getSound()">API 요청</button>
+    <h1>검색 결과</h1>
+    <img id="imgID" src="https://t4.ftcdn.net/jpg/05/71/15/73/240_F_571157329_n37fUrgjYFCwqdObhrxcWo8gj4VUlKGg.jpg" width="480", height="360">
+    <h2 id="sound"></h2>
+    <script>
+        function getSound() {
+            const name = document.getElementById('name').value
+            // ` ` : 자바스크립트 문법 -> 변수 입력
+            fetch(`https://port-0-nodejs-animal-6g2llev6e8an.sel3.cloudtype.app/sound/${name}`)
+            .then((response) => response.json())
+            .then((data) => {
+                console.log(data.sound);
+                console.log(data.img);
+                document.getElementById('sound').innerHTML = data.sound;
+                document.getElementById('imgID').src = data.img;
+            });
+        }
+    </script>
+</body>
+</html>
